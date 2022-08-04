@@ -1,25 +1,19 @@
 import React from "react";
+import PhotoList from "../PhotoList";
 import { capitalizeFirstLetter } from "../../utils/helpers";
-import photo from "../../assets/small/commercial/0.jpg"
 
-function Gallery(props) {
-    // using {object} data structure, every gallery page will have name & description. 
-    const currentCategory = {
-        name: "commercial",
-        descrption: "Photos of grocery stores, food trucks, and other commercial projects",
-    };
+// prop pass down
+// <App> | <Gallery currentCategory={currentCategory}/>
+
+function Gallery({ currentCategory }) {
+    // destructures name & description properties from currentCategory
+    const { name, descrption } = currentCategory;
 
     return (
         <section>
-            <h1>{capitalizeFirstLetter(currentCategory.name)}</h1>
-            <p>{capitalizeFirstLetter(currentCategory.descrption)}</p>
-            <div>
-                <img 
-                 src={photo}
-                 alt="commercial example"
-                 className="img-thumbnail mx-1"
-                />
-            </div>
+            <h1>{capitalizeFirstLetter(name)}</h1>
+            <p>{descrption}</p>
+            <PhotoList category={currentCategory.name}/>
         </section>
     );
 }
