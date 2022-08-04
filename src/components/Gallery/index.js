@@ -11,7 +11,7 @@ function Gallery({ currentCategory }) {
 
     return (
         <section>
-            <h1>{capitalizeFirstLetter(name)}</h1>
+            <h1 data-testid="h1tag">{capitalizeFirstLetter(name)}</h1>
             <p>{descrption}</p>
             <PhotoList category={currentCategory.name}/>
         </section>
