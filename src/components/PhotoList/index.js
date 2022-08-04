@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // prop pass down
 // <App> | <Gallery currentCategory={currentCategory}/>
-// <Gallery> | <PhotoList category={currentCategory.name}
+// <Gallery> | <PhotoList category={currentCategory.name}/>
 
 const PhotoList = ({ category }) => {
     const [photos] = useState([
