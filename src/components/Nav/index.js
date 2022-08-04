@@ -1,40 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
-function Nav() {
-    function categorySelected(name) {
-        console.log(`${name} clicked`)
-    }
+// hooks:
+//  1. only all hooks from react functions
+//  2. only call hooks at the top level. unable to use in for loops, nested functions, or conditionals.
 
-    const categories = [
-        {
-            name: "commercial",
-            description: "Photos of grocery stores, food trucks, and other commercial projects",
-        },
-        {
-            name: "portraits",
-            description: "Portraits of people in my life"
-        },
-        {
-            name: "food",
-            description: "Delicious delicacies"
-        },
-        {
-            name: "landscape",
-            description: "Fields, farmhouses, waterfalls, and the beauty of nature",
-        },
-      ];
+// lifting states:
+// 1. use if state needs to be used in sibling components
+// ex. lift <Nav> state to <App> so that <Nav> props can be used in <Gallery>
+
+function Nav(props) {
+    // App | props definition
+    const {
+        categories = [],
+        setCurrentCategory,
+        currentCategory,
+    } = props;
+
+    useEffect(() => {
+        document.title = capitalizeFirstLetter(currentCategory.name)
+    }, [currentCategory]);
 
     return (
-        <header>
+        <header className="flex-row px-1">
             <h2>
                 <a data-testid="link" href="/">
-                    <span role="img" aria-label="camera"> 📸</span> Oh snap!
+                    <span role="img" aria-label="camera">
+                        {" "}
+                        📸
+                    </span>{" "}
+                    Oh snap!
                 </a>
             </h2>
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a data-testid="about" href="#about">
+                        <a href="#about">
                             About me
                         </a>
                     </li>
@@ -43,14 +44,14 @@ function Nav() {
                     </li>
                     {/* [categories {objects}] are mapped over as "category" argument being passed thru map(). all 4 {name: ...} display as seperate <li> elements */}
                     {categories.map((category) => (
-                        // Whenever anything is mapped in JSX, the outermost element must have a uniquely-set key attribute. React keeps track of items in the virtual DOM
+                        // - evaluates ${... === ...} && as long as it's true, navActive will be returned.
+                        // - outermost jsx element must have a uniquely-set key attribute (bc virtual dom tracking).
                         <li
-                         className="mx-1" 
+                         className={`mx-1 ${currentCategory.name === category.name && 'navActive'}`}
                          key={category.name}
                         >
-                            {/* onClick expects a callback function declaration. It's important to wrap it in a function declaration rather than just calling categorySelected(category.name), which would cause the function to get called whenever the component renders as well. */}
-                            <span onClick={() => categorySelected(category.name)} >
-                                {category.name}
+                            <span onClick={() => {setCurrentCategory(category)}}>
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}

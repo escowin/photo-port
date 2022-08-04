@@ -24,5 +24,4 @@ function Gallery(props) {
     );
 }
 
-// ** paused 20.3.4
 export default Gallery;
