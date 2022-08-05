@@ -81,7 +81,11 @@ function App() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default App;
 =======
 export default App;
 >>>>>>> aa165a9c50c5646e2bc02a6e3c95dc718431268b
+=======
+export default App;
+>>>>>>> develop
