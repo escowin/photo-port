@@ -5,6 +5,9 @@ import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 
 function App() {
+  // useState hook | SPA rendering
+  const [contactSelected, setContactSelected] = useState(false);
+
   // originally found in <Nav>
   const [categories] = useState([
     {
@@ -35,11 +38,20 @@ function App() {
        categories={categories}
        setCurrentCategory={setCurrentCategory}
        currentCategory={currentCategory}
+      //  passing getter & setter functions allow Contact component to modify App state. conditionally render based on selection
+       contactSelected={contactSelected}
+       setContactSelected={setContactSelected}
       />
       <main>
-        <ContactForm/>
-        <Gallery currentCategory={currentCategory}/>
-        <About/>
+        {/* SPA logic | ternary operator: if contactSelected is false, Gallery & About render. if contactSelected is true, ContactForm renders. supply false codition to render with ternary operators*/}
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}/>
+            <About/>
+          </>
+        ) : (
+          <ContactForm/>
+        )}
       </main>
     </div>
   );

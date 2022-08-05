@@ -15,6 +15,8 @@ function Nav(props) {
         categories = [],
         setCurrentCategory,
         currentCategory,
+        contactSelected,
+        setContactSelected
     } = props;
 
     useEffect(() => {
@@ -35,22 +37,31 @@ function Nav(props) {
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a data-testid="about" href="#about">
+                        {/* select About | contactSelected is false, About renders */}
+                        <a data-testid="about" href="#about" onClick={() => setContactSelected(false)}>
                             About me
                         </a>
                     </li>
-                    <li>
-                        <span>Contact</span>
+                    {/* selecting Contact | add css class navActive */}
+                    <li className={`mx-2 ${contactSelected && 'navActive'}`}>
+                        {/* select Contact |  contactSelected is true, */}
+                        <span onClick={() => setContactSelected(true)}>
+                            Contact
+                        </span>
                     </li>
                     {/* [categories {objects}] are mapped over as "category" argument being passed thru map(). all 4 {name: ...} display as seperate <li> elements */}
                     {categories.map((category) => (
                         // - evaluates ${... === ...} && as long as it's true, navActive will be returned.
                         // - outermost jsx element must have a uniquely-set key attribute (bc virtual dom tracking).
                         <li
-                         className={`mx-1 ${currentCategory.name === category.name && 'navActive'}`}
+                         className={`mx-1 ${currentCategory.name === category.name && !contactSelected && 'navActive'}`}
                          key={category.name}
                         >
-                            <span onClick={() => {setCurrentCategory(category)}}>
+                            <span onClick={() => {
+                                setCurrentCategory(category);
+                                setContactSelected(false);
+                             }}
+                            >
                                 {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
