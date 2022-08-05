@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import About from './components/About';
 import Nav from './components/Nav';
@@ -54,38 +53,8 @@ function App() {
           <ContactForm/>
         )}
       </main>
-=======
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
->>>>>>> aa165a9c50c5646e2bc02a6e3c95dc718431268b
     </div>
   );
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> aa165a9c50c5646e2bc02a6e3c95dc718431268b
-=======
-export default App;
->>>>>>> develop
