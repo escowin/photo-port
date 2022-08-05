@@ -3,7 +3,7 @@ import React from "react";
 // Parent-child relationship
 // PhotoList.Modal
 
-function Modal({currentPhoto}) {
+const Modal = ({ onClose, currentPhoto }) => {
     // destructured prop
     const {name, category, description, index} = currentPhoto;
 
@@ -17,7 +17,7 @@ function Modal({currentPhoto}) {
                  alt="current category"
                 />
                 <p>{description}</p>
-                <button type="button">
+                <button type="button" onClick={onClose}>
                     Close this modal
                 </button>
             </div>
