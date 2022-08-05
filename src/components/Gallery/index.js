@@ -7,12 +7,12 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Gallery({ currentCategory }) {
     // destructures name & description properties from currentCategory
-    const { name, descrption } = currentCategory;
+    const { name, description } = currentCategory;
 
     return (
         <section>
             <h1 data-testid="h1tag">{capitalizeFirstLetter(name)}</h1>
-            <p>{descrption}</p>
+            <p>{description}</p>
             <PhotoList category={currentCategory.name}/>
         </section>
     );
