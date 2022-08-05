@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { validateEmail } from "../../utils/helpers";
 
 // useState Hook | maintains form data with state
 // - controlled component: form data maintained by component state
@@ -14,6 +15,12 @@ function ContactForm() {
 
     // sync internal state of the component formState with user input from DOM
     function handleChange(e) {
+        if (e.target.name === "email") {
+            const isValid = validateEmail(e.target.value);
+            console.log(isValid);
+            // isValid conditional statement
+        }
+
         // updates formState value for name property. Spread operator '...' retains other key-value pairs in object.
         // - w/o spread operator, formState object will be overwritten to only contain name:value key pair.
         // - below, [...name] refers to the name attribute of the form elment (name, email, message). allows for dynamically created property names.
@@ -26,7 +33,7 @@ function ContactForm() {
         e.preventDefault();
         console.log(formState);
     }
-    
+
     return (
         <section>
             <h1>Contact me</h1>
@@ -49,4 +56,5 @@ function ContactForm() {
     );
 }
 
+// ** pause 20.4.5
 export default ContactForm;
